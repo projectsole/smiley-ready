@@ -28,5 +28,9 @@ def allergeni():
     return render_template("index_allergeni.html")
 
 
-def handler(request):
-    return app.wsgi_app
+import os
+if os.getenv("VERCEL"):
+    from flask import Request, Response
+    
+    def handler(request: Request) -> Response:
+        return app.wsgi_app(request.environ, lambda status, headers: None)
