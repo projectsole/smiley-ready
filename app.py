@@ -27,3 +27,5 @@ def suggest_gramsci():
 def allergeni():
     return render_template("index_allergeni.html")
 
+def handler(event, context):
+    return app.wsgi_app(event, lambda status, headers: None)
